@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  mongodb :
+    image : mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+
+  backend22:
+    image : node:20-alpine
+    container_name: backend22_image
+    ports:
+      - 3000:3000
+    environment:
+      MONGODB_URL: "mongodb://mongodb:27017/myDatabase"
+
+volumes:
+  mongodb_data:
